@@ -5,6 +5,10 @@ class ArticlesController < ApplicationController
        render action: 'index'
   end
 
+  def show
+    @articles = Article.find(params[:id])
+  end
+
   def new
   end
 
