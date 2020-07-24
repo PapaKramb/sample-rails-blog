@@ -1,10 +1,21 @@
 <h1><%= @articles.title %></h1>
-<p><%= @articles.text %></p>
+<p>
+	<%= @articles.text %>
+</p>
 
 <%= link_to 'Edit', edit_article_path(@articles) %> |
 <%= link_to 'Delete', article_path(@articles), method: :delete %>
 
+<h2>Comments</h2>
 
+<% @articles.comments.each do |comment| %>
+	<p>
+	<i><%= comment.author %> Said:</i><br/>
+	<%= comment.body %>
+	</p>
+<% end %>
+
+<h2>Add comment</h2>
 
 <p>
 <%= form_for ([@articles, @articles.comments.build]) do |f| %>
