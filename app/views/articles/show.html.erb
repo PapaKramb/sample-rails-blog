@@ -1,39 +1,43 @@
-<div class="container">
-	<div class="row">
-		<div class="col-sm-4"></div>
-		<div class="col-sm-4">
-			<h1><%= @articles.title %></h1>
-			<p>
-				<%= @articles.text %>
-			</p>
+<h1><%= @articles.title %></h1>
+<p>
+	<%= @articles.text %>
+</p>
 
-			<%= link_to 'Edit', edit_article_path(@articles) %> |
-			<%= link_to 'Delete', article_path(@articles), method: :delete %>
+<% if user_signed_in? %>
+	<%= link_to 'Edit', edit_article_path(@articles) %> |
+	<%= link_to 'Delete', article_path(@articles), method: :delete %>
+<% else %>
+	<p>
+		<i>Please <%= link_to "sign in", new_user_session_path %> or <%= link_to "register", new_user_registration_path %> to show post</i>
+	</p>
+<% end %>
 
-			<h2>Comments</h2>
+<h2>Comments</h2>
 
-			<% @articles.comments.each do |comment| %>
-				<p>
-				<i><%= comment.author %> Said:</i><br/>
-				<%= comment.body %>
-				</p>
-			<% end %>
+<% @articles.comments.each do |comment| %>
+	<p>
+	<i><%= comment.author %> Said:</i><br/>
+	<%= comment.body %>
+	</p>
+<% end %>
 
-			<h2>Add comment</h2>
+<p>
+<% if user_signed_in? %>
+	<h2>Add comment</h2>
+	<%= form_for ([@articles, @articles.comments.build]), :class => "form-group" do |f| %>
 
-			<p>
-			<%= form_for ([@articles, @articles.comments.build]), :class => "form-group" do |f| %>
+		<p>
+			<%= f.label :body %> </br>
+			<%= f.text_area(:body, {:class => "form-control"}) %>
+		</p>
 
-				<p>
-					<%= f.label :body %> </br>
-					<%= f.text_area(:body, {:class => "form-control"}) %>
-				</p>
-
-				<p>
-					<%= f.submit %>
-				</p>
-			<% end %>
-			</p>
-		</div>
-	</div>
-</div>
+		<p>
+			<%= f.submit %>
+		</p>
+	<% end %>
+<% else %>
+	<p>
+		<i>Please <%= link_to "sign in", new_user_session_path %> or <%= link_to "register", new_user_registration_path %> to leave comments.</i>
+	</p>
+<% end %>
+</p>

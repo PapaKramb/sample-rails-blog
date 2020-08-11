@@ -1,25 +1,17 @@
-<div class="container">
-	<div class="row">
-		<div class="col-sm-4">
-		</div>
-		<div class="col-sm-4">
-			<h1>New article</h1>
+<h1>New article</h1>
 
-			<%= form_for :article, url: articles_path, :class => "form-group" do |f| %>
-				<p>
-					<%= f.label :title %> </br>
-					<%= f.text_field(:title, {:class => "form-control"}) %>
-				</p>
+<%= form_for :article, url: articles_path, :class => "form-group" do |f| %>
+	<p>
+		<%= f.label :title %> </br>
+		<%= f.text_field(:title, {:class => "form-control"}) %>
+	</p>
 
-				<p>
-					<%= f.label :text %> </br>
-					<%= f.text_area(:text, {:class => "form-control"}) %>
-				</p>
+	<p>
+		<%= f.label :text %> </br>
+		<%= f.text_area(:text, {:class => "form-control"}) %>
+	</p>
 
-				<p>
-					<%= f.submit({:class => "btn btn-primary"}) %>
-				</p>
-			<% end %>
-		</div>
-	</div>
-</div>
+	<p>
+		<%= f.submit({:class => "btn btn-primary"}) %>
+	</p>
+<% end %>
