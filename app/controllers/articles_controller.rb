@@ -17,7 +17,8 @@ class ArticlesController < ApplicationController
 
   def create
     #render plain: params[:article].inspect
-    @articles = Article.new(articles_params)
+    #@articles = Article.new(articles_params)
+    @articles = current_user.articles.new(articles_params)
     if @articles.save
       redirect_to @articles
     else

@@ -9,9 +9,15 @@
 	</p>
 
 	<p>
-		<%= link_to 'Show', article_path(art) %> |
-		<%= link_to 'Edit', edit_article_path(art) %> |
-		<%= link_to 'Delete', article_path(art), method: :delete, data: { confirm: 'Are you sure?'} %>
+		<% if user_signed_in? %>
+			<%= link_to 'Show', article_path(art) %> 
+			<% if art.user == current_user  %>
+				| <%= link_to 'Edit', edit_article_path(art) %> |
+				<%= link_to 'Delete', article_path(art), method: :delete, data: { confirm: 'Are you sure?'} %>
+			<% end %>
+		<% else %>
+			<i>Please <%= link_to "sign in", new_user_session_path %> or <%= link_to "register", new_user_registration_path %> to show post</i>
+		<% end %>
 	</p>
 	<hr/>
 <% end %>

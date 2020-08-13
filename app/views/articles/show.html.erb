@@ -3,12 +3,12 @@
 	<%= @articles.text %>
 </p>
 
-<% if user_signed_in? %>
+<% if @articles.user == current_user %>
 	<%= link_to 'Edit', edit_article_path(@articles) %> |
-	<%= link_to 'Delete', article_path(@articles), method: :delete %>
+	<%= link_to 'Delete', article_path(@articles), method: :delete, data: { confirm: 'Are you sure?'} %>
 <% else %>
 	<p>
-		<i>Please <%= link_to "sign in", new_user_session_path %> or <%= link_to "register", new_user_registration_path %> to show post</i>
+		<i>Управлять постом может только автор</i>
 	</p>
 <% end %>
 
