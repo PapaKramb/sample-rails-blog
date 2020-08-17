@@ -26,6 +26,7 @@
                 <li><%= link_to 'Home', home_index_path %></li>
                 <li><%= link_to 'Article', articles_path %></li>
                 <li><%= link_to 'New article', new_article_path %></li>
+                <li><%= link_to 'Contact', contacts_path %></li>
               <div style="margin-left: 600px;">
               <% if user_signed_in? %>
                   <li><%= link_to 'Hello,' + "#{current_user.username}" %></li> 
