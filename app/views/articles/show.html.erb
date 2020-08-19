@@ -23,7 +23,7 @@
 
 <p>
 <% if user_signed_in? %>
-	<h2>Add comment</h2>
+	<h2><%= t('articles.new_article_comment') %></h2>
 	<%= form_for ([@articles, @articles.comments.build]), :class => "form-group" do |f| %>
 
 		<p>

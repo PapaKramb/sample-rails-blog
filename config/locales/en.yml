@@ -34,3 +34,8 @@ en:
 
   contacts:
     contact_us: "Contact Us!"
+
+  articles:
+    new_articles: "New article!"
+    edit_articles: "Edit article!"
+    new_article_comment: "Add comment!"
